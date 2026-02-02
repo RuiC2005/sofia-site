@@ -12,7 +12,7 @@ export default function App() {
 
   const notes = {
     Foundation:
-      "4. Thank You! PS: There are four hearts because we met on Decmeber 4th. ❤️",
+      "4. Thank You! PS: There are four hearts because we had our first date on Decmeber 4th. ❤️",
     Structure:
       "2. Leading me to develope a huge crush on you, begging be set up with your for months. ",
     Light:
