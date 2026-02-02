@@ -41,7 +41,7 @@ export default function App() {
               <p 
               style={{ fontFamily: '"Lora", serif'}}
               className="font-body mt-3 max-w-2xl text-zinc-600">
-                Thank you for giving me the chance to get to know you. I have really enjoyed the time we have spent together. When we spend time with one another it feels effortless and time seems to fast forward. I know I may not have been the most romantic guy but I hope this moment change Below you will be ablle to see a 3D model of hearts. I wanted to bring both our worlds of Computer Science and Architecture together. Each heart has a small note. Please click them from left to right, on the 3rd heart click "View our Memoriers" and click the big heart last for a final surprise.
+                Thank you for giving me the chance to get to know you. I have really enjoyed the last couple months we have spent together, I feel that when we spend time with one another, time seems to pass exponentially and you make me wish some days didn't have 24 hours just so I could see you more. Now, I know I may not have been the most romantic guy but I hope this moment changes that. Below you will be ablle to see a 3D model of hearts. I made this because I wanted to bring both our worlds of Computer Science and Architecture together. Each heart has a small note. Please click them from left to right, on the 3rd heart click "View our Memoriers" and click the big heart last for a final surprise!
               </p>
             </div>
 
