@@ -14,11 +14,11 @@ export default function App() {
     Foundation:
       "4. Thank You! PS: There are four hearts because we had our first date on Decmeber 4th. ❤️",
     Structure:
-      "2. Leading me to develope a huge crush on you, begging be set up with your for months. ",
+      "2. Leading me to eventually meeting you. Then I developed a huge crush on you. Which then lead to me begging be set up with your for months. ",
     Light:
-      "1. To the random chipotle worker I had a thought was cute.",
+      "1. To the random chipotle worker I had thought was cute.",
     Details:
-      "3. To that random night I decided to message you on Instagram out of the blue. I never would've thought we would end up where we are. That being said...",
+      "3. Now to that random night I decided to message you on Instagram out of the blue. I never would've thought we would end up where we are. That being said I have something to ask...",
   };
 
   return (
