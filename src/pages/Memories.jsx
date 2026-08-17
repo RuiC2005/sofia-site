@@ -1,11 +1,53 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import leftPic from "../assets/sofia-left.jpg";
 import rightPic from "../assets/sofia-right.jpg";
 import carPic from "../assets/pic-in-my-car.jpeg";
 import sofiFriendsAndMe from "../assets/sofi-me-and-friends.jpeg";
 import drnkCanesPic from "../assets/drnk-at-canes.jpg";
+import hushPic from "../assets/hush-pic.jpg";
+import notChoppedPic from "../assets/last-pic-in-vktiguan.jpeg";
+
+function AccordionItem({ title, isOpen, onToggle, children }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-rose-200 bg-transparent">
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-5 py-4 text-left"
+        style={{ fontFamily: '"Dancing Script", cursive' }}
+      >
+        <span className="text-lg font-semibold text-rose-400">{title}</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="#fb7185"
+          className={`ml-4 h-5 w-5 shrink-0 transition-transform duration-300 ${
+            isOpen ? "rotate-45" : ""
+          }`}
+        >
+          <path d="M12 21s-6.716-4.35-9.428-8.03C.686 10.31 1.02 6.94 3.6 5.2c2.3-1.55 5.13-.98 6.4 1.02.4.63.7 1.34.9 2.08a7.9 7.9 0 0 1 .9-2.08c1.27-2 4.1-2.57 6.4-1.02 2.58 1.74 2.914 5.11 1.028 7.77C18.716 16.65 12 21 12 21z" />
+        </svg>
+      </button>
+
+      <div
+        className={`grid transition-all duration-500 ease-in-out ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="px-5 pb-6">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Memories() {
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (id) => {
+    setOpenSection((current) => (current === id ? null : id));
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-100 via-rose-50 to-white text-zinc-800">
       <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
@@ -24,84 +66,179 @@ export default function Memories() {
           Us
         </h1>
 
-        <p
-          style={{ fontFamily: '"Lora", serif' }}
-          className="font-body mt-2 max-w-xl text-zinc-600"
-        >
-          This page is under development but only because I want to add more
-          memories for us to look back on together! As time goes on I can add
-          pictures of special moments for us to look back on.
-        </p>
+        {/* Memory tabs */}
+        <div className="mt-8 space-y-4">
+              <AccordionItem
+                title="Where it all started"
+                isOpen={openSection === "start"}
+                onToggle={() => toggleSection("start")}
+              >
+                <p
+                  style={{ fontFamily: '"Lora", serif' }}
+                  className="font-body text-zinc-600"
+                >
+                  This page is under development but only because I want to
+                  add more memories for us to look back on together! As time
+                  goes on I can add pictures of special moments for us to
+                  look back on.
+                </p>
 
-        {/* Existing two pics */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm scale-85">
-            <img
-              src={leftPic}
-              alt="Sofia and I"
-              className="h-full w-full object-contain scale-85"
-            />
-          </div>
+                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                  <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm scale-85">
+                    <img
+                      src={leftPic}
+                      alt="Sofia and I"
+                      className="h-full w-full object-contain scale-85"
+                    />
+                  </div>
 
-          <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm scale-85">
-            <img
-              src={rightPic}
-              alt="Sofia and I"
-              className="h-full w-full object-contain scale-85"
-            />
-          </div>
-        </div>
+                  <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm scale-85">
+                    <img
+                      src={rightPic}
+                      alt="Sofia and I"
+                      className="h-full w-full object-contain scale-85"
+                    />
+                  </div>
+                </div>
+              </AccordionItem>
 
-        
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
-              <img
-                src={carPic}
-                alt="In the car"
-                className="h-64 w-full object-cover"
-              />
-            </div>
+              <AccordionItem
+                title="Rui's B-day weekend"
+                isOpen={openSection === "weekend"}
+                onToggle={() => toggleSection("weekend")}
+              >
+                <div className="grid gap-6 sm:grid-cols-3">
+                  <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
+                    <img
+                      src={carPic}
+                      alt="In the car"
+                      className="h-64 w-full object-cover"
+                    />
+                  </div>
 
-            <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
-              <img
-                src={sofiFriendsAndMe}
-                alt="Sofia, friends and me"
-                className="h-64 w-full object-cover"
-              />
-            </div>
+                  <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
+                    <img
+                      src={sofiFriendsAndMe}
+                      alt="Sofia, friends and me"
+                      className="h-64 w-full object-cover"
+                    />
+                  </div>
 
-            <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
-              <img
-                src={drnkCanesPic}
-                alt="Drinks at Canes"
-                className="h-64 w-full object-cover"
-              />
-            </div>
+                  <div className="overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
+                    <img
+                      src={drnkCanesPic}
+                      alt="Drinks at Canes"
+                      className="h-64 w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </AccordionItem>
 
-          <p
-            style={{ fontFamily: '"Lora", serif' }}
-            className="mt-6 text-zinc-600 leading-relaxed col-span-3"
-          >
-            Hi babe! I hope you're doing well. I just wanted to upload these pictures of us to remember this fun weekend. Thank you for coming out and meeting my friends. 
-            I seriously had so much fun with you and my friends. Mi querida Sofia how do I start? I guess I should just start typing and we will see how this goes. Sofia, I feel like I haven't really told you how much you mean to me. For the longest time 
-            it has been really hard for me to genuinely like someone. Before I met you, it felt like my gut would always have a bad feeling when wanting to commit or I would always find something wrong. With you, things are different. 
-            You make everything feel so natural. You make my feelings for you grow every time we see each other and my gut immediately had a good feeling about you. So far, it has been right. One of the many things you have done is rekindle the romantic in me. 
-            Before you, it felt like doing all those cringey romantic things were gross and a waste of time. But with you, I want to do all those things. I hate and love the way you
-            make time fast-forward, and when I am with you, I always wish the day were longer than 24 hours just so I can spend that much more time with you. 
-            All of these things, and many more, are why you mean so much to me.
-          </p>
+              <AccordionItem
+                title="For you"
+                isOpen={openSection === "letter"}
+                onToggle={() => toggleSection("letter")}
+              >
+                <p
+                  style={{ fontFamily: '"Lora", serif' }}
+                  className="text-zinc-600 leading-relaxed"
+                >
+                  Hi babe! I hope you're doing well. I just wanted to upload
+                  these pictures of us to remember this fun weekend. Thank
+                  you for coming out and meeting my friends. I seriously had
+                  so much fun with you and my friends. Mi querida Sofia how
+                  do I start? I guess I should just start typing and we will
+                  see how this goes. Sofia, I feel like I haven't really
+                  told you how much you mean to me. For the longest time it
+                  has been really hard for me to genuinely like someone.
+                  Before I met you, it felt like my gut would always have a
+                  bad feeling when wanting to commit or I would always find
+                  something wrong. With you, things are different. You make
+                  everything feel so natural. You make my feelings for you
+                  grow every time we see each other and my gut immediately
+                  had a good feeling about you. So far, it has been right.
+                  One of the many things you have done is rekindle the
+                  romantic in me. Before you, it felt like doing all those
+                  cringey romantic things were gross and a waste of time.
+                  But with you, I want to do all those things. I hate and
+                  love the way you make time fast-forward, and when I am
+                  with you, I always wish the day were longer than 24 hours
+                  just so I can spend that much more time with you. All of
+                  these things, and many more, are why you mean so much to
+                  me.
+                </p>
 
-           <p
-            style={{ fontFamily: '"Lora", serif' }}
-            className="mt-6 text-zinc-600 leading-relaxed col-span-3"
-          >
-            Sofia, I know that with me you have experienced many firsts, and I want to thank you for putting that trust in me.
-            What I will say is that even though you might not be the first for me in some things, but I hope you know that you are the first girl I genuinely have nothing but pure intentions with. 
-            When I look into your eyes, I am honestly in awe of how beautiful you are. I love that when I look at you, I get filled with so much joy and appreciation that someone so beautiful can be in front of me.
-            And believe me when I say beautiful, I don't just mean the physical side of you, even though that's true too. 
-            I also mean the non-physical parts of you: the way you work hard, the way you are kind but also playful and witty, the way you giggle, the way you're kinduh dorky, the way you are so morally grounded, and the way you bring the best out of me. 
-            Te quiero con todo mi corazón, Sofia!
-         </p>
+                <p
+                  style={{ fontFamily: '"Lora", serif' }}
+                  className="mt-6 text-zinc-600 leading-relaxed"
+                >
+                  Sofia, I know that with me you have experienced many
+                  firsts, and I want to thank you for putting that trust in
+                  me. What I will say is that even though you might not be
+                  the first for me in some things, but I hope you know that
+                  you are the first girl I genuinely have nothing but pure
+                  intentions with. When I look into your eyes, I am honestly
+                  in awe of how beautiful you are. I love that when I look
+                  at you, I get filled with so much joy and appreciation
+                  that someone so beautiful can be in front of me. And
+                  believe me when I say beautiful, I don't just mean the
+                  physical side of you, even though that's true too. I also
+                  mean the non-physical parts of you: the way you work
+                  hard, the way you are kind but also playful and witty, the
+                  way you giggle, the way you're kinduh dorky, the way you
+                  are so morally grounded, and the way you bring the best
+                  out of me. Te quiero con todo mi corazón, Sofia!
+                </p>
+              </AccordionItem>
+              
+              <AccordionItem
+                title="Going through the motions"
+                isOpen={openSection === "motions"}
+                onToggle={() => toggleSection("motions")}
+              >
+                  <div className="mx-auto max-w-xs overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
+                    <img
+                      src={hushPic}
+                      alt="Picture of us at Hush"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+
+                <p>
+                  Hello Sofi! This is a collage of pictutres of us at Hush the day you graduated.
+                  I am very proud of you for graduating and I am happy to have been there to celebrate with you. 
+                  Sofia, that day was not only a beautiful because of your great achievement but that day we were also able
+                  to resolve things. Despite how hard things get for us it seems like we have an ability to be able to work through
+                  things and perseveer through. Truly Sofia I do love you and I am truly grateful for you and I can't wait to keep 
+                  making memories with you. 
+                </p>
+              </AccordionItem>
+
+              <AccordionItem
+                title="Summer 2026 - You're not chopped"
+                isOpen={openSection === "NotChopped"}
+                onToggle={() => toggleSection("NotChopped")}
+              >
+                  <div className="mx-auto max-w-xs overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
+                    <img
+                      src={notChoppedPic}
+                      alt="Not Chopped Picture"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+
+                <p>
+                  Hi Sofi! Please do not kill me. I know you said you do NOT like this picture but I love it and I think
+                  you look very beautiful in it. We are about two and a half weeks from you leaving. I seriously do not want
+                  you to leave. Sofia I love you and with that comes loving your history and your future. This opportunity is
+                  amazing and I will support you from far away. I don't know how else to say this but I imagine a future with you
+                  and I am willing to do anything to have that with you. Even if it means doing long distance for two years. The 
+                  distance for me isn't an issue as I think in the long run two years won't be much. I really want to make it with 
+                  you and again I stress that I will do ANYTHING to make that happen. I hope you feel the same way about me because I
+                  have never loved like this and I want to you to be my last love. Is that crazy to say? Idk but it is what I feel. 
+                  Anywho, I love you - Rui
+                </p>
+              </AccordionItem>
         </div>
       </div>
     </div>
