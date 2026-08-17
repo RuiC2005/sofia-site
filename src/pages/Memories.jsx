@@ -5,7 +5,7 @@ import rightPic from "../assets/sofia-right.jpg";
 import carPic from "../assets/pic-in-my-car.jpeg";
 import sofiFriendsAndMe from "../assets/sofi-me-and-friends.jpeg";
 import drnkCanesPic from "../assets/drnk-at-canes.jpg";
-import hushPic from "../assets/hush-pic.jpg";
+import hushPic from "../assets/hush-pic.jpeg";
 import notChoppedPic from "../assets/last-pic-in-vktiguan.jpeg";
 
 function AccordionItem({ title, isOpen, onToggle, children }) {
